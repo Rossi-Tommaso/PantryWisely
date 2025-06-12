@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { NavButtonProps } from '../lib/types.js';
+  import { goto } from '$app/navigation';
 
   let {
     title,
@@ -35,8 +36,7 @@
   }[icon] || icon);
 
   function handleClick() {
-    // In a real app, this would use SvelteKit's goto function
-    console.log(`Navigating to: ${href}`);
+    goto(`${href}`);
   }
 </script>
 

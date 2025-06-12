@@ -1,3 +1,28 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+button { 
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Scrollbar Glassmorphism GLOBALE */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(173, 169, 169, 0.6);
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(150, 148, 148, 0.9);
+    width: 6px;
+}

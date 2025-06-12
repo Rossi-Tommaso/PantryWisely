@@ -1,19 +1,28 @@
-export interface PantryItem {
+interface Food {
   id: string;
   name: string;
-  quantity: number;
-  unit: string;
-  expirationDate: Date;
+  quantity: string;
+  category?: string;
+}
+
+interface PantryItem extends Food {
+  expirationDate: Date | null;
   isEssential: boolean;
 }
 
-export interface PantrySummary {
+interface ShopItem extends Food {
+  importance: 'low' | 'medium' | 'high';
+  added: Date;
+  completed: boolean;
+}
+
+interface PantrySummary {
   totalItems: number;
   expiringSoon: number;
   missingEssentials: number;
 }
 
-export interface NavButtonProps {
+interface NavButtonProps {
   title: string;
   description: string;
   icon: string;
@@ -21,19 +30,29 @@ export interface NavButtonProps {
   variant?: 'primary' | 'secondary';
 }
 
-export interface SummaryCardProps {
+interface SummaryCardProps {
   title: string;
   value: number;
   icon: string;
   color: 'blue' | 'amber' | 'red' | 'green';
 }
 
-export interface ShopItem {
-  id: string;
-  name: string;
-  quantity: string;
-  importance: 'low' | 'medium' | 'high';
-  category?: string;
-  added: Date;
-  completed: boolean;
-  }
+interface Info {
+  type: string;
+  title: string;
+  message?: string;
+}
+
+
+type SerializedPantryItem = Omit<PantryItem, 'expirationDate' | 'addedDate'> & {
+  expirationDate: string;
+};
+
+type SerializedShopItem = Omit<ShopItem, 'added'> & {
+  added: string;
+};
+
+type SerializedItem = SerializedPantryItem | SerializedShopItem;
+
+export type { PantryItem, PantrySummary, NavButtonProps, SummaryCardProps, ShopItem, SerializedItem, Info }
+export type ExpiryStatus = 'fresh' | 'expiring' | 'expired';
